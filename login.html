@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login — IP Production</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/admin.css" />
+  </head>
+  <body class="admin-login-body">
+    <div class="auth-shell">
+      <div class="auth-card glass-panel">
+        <p class="eyebrow">Private Access</p>
+        <h1>IP Production Admin</h1>
+        <p class="auth-copy">Secure owner access for media management, text editing, portfolio updates, and contact message control.</p>
+        <form id="loginForm" class="auth-form">
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" placeholder="owner@ipproduction.com" required />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" name="password" placeholder="••••••••••" required />
+          </label>
+          <button type="submit" class="primary-btn">Login</button>
+          <p id="loginStatus" class="status-text"></p>
+        </form>
+        <a href="/" class="subtle-link">Back to website</a>
+      </div>
+    </div>
+    <script>
+      const form = document.getElementById('loginForm');
+      const status = document.getElementById('loginStatus');
+
+      fetch('/api/auth/me')
+        .then((r) => r.json())
+        .then((data) => {
+          if (data.authenticated) window.location.href = '/admin';
+        });
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        status.textContent = 'Signing in...';
+        const formData = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          status.textContent = data.error || 'Login failed';
+          return;
+        }
+        status.textContent = 'Success. Redirecting...';
+        window.location.href = '/admin';
+      });
+    </script>
+  </body>
+</html>

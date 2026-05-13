@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IP Production — Cinematic Creative Studio</title>
+    <meta
+      name="description"
+      content="IP Production is a premium creative studio for cinematic photography, filmmaking, editing, and modern visual campaigns."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="page-loader" id="pageLoader">
+      <div class="loader-mark">
+        <span>IP</span>
+        <small>Production</small>
+      </div>
+    </div>
+
+    <canvas id="particles"></canvas>
+
+    <div class="cursor-glow"></div>
+
+    <header class="site-header glass">
+      <a class="brand" href="#home">
+        <span>IP</span>
+        <small>Production</small>
+      </a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="/admin/login" class="nav-admin">Admin</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-media" id="heroMedia"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+          <p class="eyebrow reveal" id="heroEyebrow">IP Production</p>
+          <h1 class="hero-title reveal" id="heroTitle"></h1>
+          <p class="hero-subtitle reveal" id="heroSubtitle"></p>
+          <div class="hero-actions reveal">
+            <a id="heroPrimary" class="btn btn-gold" href="#portfolio">View Portfolio</a>
+            <a id="heroSecondary" class="btn btn-ghost" href="#contact">Contact Us</a>
+          </div>
+          <div class="hero-note glass reveal" id="heroBody"></div>
+        </div>
+        <div class="scroll-indicator">
+          <span></span>
+        </div>
+      </section>
+
+      <section class="about section container" id="about">
+        <div class="section-heading reveal">
+          <span class="section-kicker">About the Studio</span>
+          <h2 id="aboutTitle"></h2>
+          <p id="aboutSubtitle"></p>
+        </div>
+        <div class="about-grid">
+          <article class="about-card glass reveal">
+            <h3>Creative Depth</h3>
+            <p id="aboutBody"></p>
+          </article>
+          <article class="about-card reveal">
+            <div class="about-stack" id="aboutStats"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="portfolio section container" id="portfolio">
+        <div class="section-heading reveal inline-between">
+          <div>
+            <span class="section-kicker">Selected Work</span>
+            <h2>Immersive visual portfolio</h2>
+            <p>Photography, cinematic videos, branded content, and social-first creative executions.</p>
+          </div>
+          <div class="category-filters" id="categoryFilters"></div>
+        </div>
+        <div class="masonry-grid" id="portfolioGrid"></div>
+      </section>
+
+      <section class="skills section container" id="skills">
+        <div class="section-heading reveal">
+          <span class="section-kicker">Craft & Tools</span>
+          <h2>Editing precision meets visual direction</h2>
+        </div>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </section>
+
+      <section class="services section container" id="services">
+        <div class="section-heading reveal">
+          <span class="section-kicker">Services</span>
+          <h2>Premium production services tailored for modern brands</h2>
+        </div>
+        <div class="services-grid" id="servicesGrid"></div>
+      </section>
+
+      <section class="testimonials section container" id="testimonials">
+        <div class="section-heading reveal">
+          <span class="section-kicker">Client Voices</span>
+          <h2>Minimal, elegant, and trusted</h2>
+        </div>
+        <div class="testimonial-grid" id="testimonialGrid"></div>
+      </section>
+
+      <section class="contact section container" id="contact">
+        <div class="section-heading reveal">
+          <span class="section-kicker">Contact</span>
+          <h2 id="contactTitle"></h2>
+          <p id="contactSubtitle"></p>
+        </div>
+        <div class="contact-layout">
+          <div class="contact-panel glass reveal">
+            <p id="contactBody"></p>
+            <div class="social-grid" id="socialGrid"></div>
+          </div>
+          <form class="contact-form glass reveal" id="contact-form">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="Your email" />
+            </label>
+            <label>
+              <span>Phone / WhatsApp</span>
+              <input type="text" name="phone" placeholder="Phone or WhatsApp" />
+            </label>
+            <label>
+              <span>Project Type</span>
+              <input type="text" name="project_type" placeholder="Campaign, Reel, Brand Shoot..." />
+            </label>
+            <label>
+              <span>Project Brief</span>
+              <textarea name="message" rows="5" placeholder="Tell us about your vision" required></textarea>
+            </label>
+            <button class="btn btn-gold" type="submit">Send Message</button>
+            <p class="form-status" id="formStatus"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <div>
+        <h3>IP Production</h3>
+        <p>Luxury-grade visual production with cinematic discipline.</p>
+      </div>
+      <a class="footer-link" href="/admin/login">Private Admin Dashboard</a>
+    </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" id="lightboxClose">×</button>
+      <div class="lightbox-content" id="lightboxContent"></div>
+    </div>
+
+    <script src="/assets/js/app.js" defer></script>
+  </body>
+</html>

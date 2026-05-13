@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: ip-production-portfolio
+    env: docker
+    plan: free
+    autoDeploy: true

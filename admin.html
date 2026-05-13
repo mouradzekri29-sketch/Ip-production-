@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard — IP Production</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/admin.css" />
+  </head>
+  <body class="admin-body">
+    <div class="dashboard-shell">
+      <aside class="dashboard-sidebar glass-panel">
+        <a href="/" class="dashboard-brand">
+          <span>IP</span>
+          <small>Production</small>
+        </a>
+        <nav class="dashboard-nav">
+          <button class="tab-btn active" data-tab="overview">Overview</button>
+          <button class="tab-btn" data-tab="sections">Homepage Sections</button>
+          <button class="tab-btn" data-tab="media">Media Library</button>
+          <button class="tab-btn" data-tab="categories">Categories</button>
+          <button class="tab-btn" data-tab="skills">Skills</button>
+          <button class="tab-btn" data-tab="services">Services</button>
+          <button class="tab-btn" data-tab="testimonials">Testimonials</button>
+          <button class="tab-btn" data-tab="socials">Social Links</button>
+          <button class="tab-btn" data-tab="messages">Messages</button>
+          <button class="tab-btn" data-tab="account">Account</button>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="/" class="subtle-link">Open website</a>
+          <button id="logoutBtn" class="ghost-btn">Logout</button>
+        </div>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="dashboard-header glass-panel">
+          <div>
+            <p class="eyebrow">Private Dashboard</p>
+            <h1>Luxury content control center</h1>
+          </div>
+          <div class="admin-chip" id="adminIdentity">Owner</div>
+        </header>
+
+        <section class="dashboard-panel active" data-panel="overview">
+          <div class="stats-grid" id="statsGrid"></div>
+          <div class="two-col">
+            <div class="glass-panel panel-card">
+              <h2>Quick actions</h2>
+              <div class="action-list">
+                <button class="primary-btn quick-tab" data-target="media">Upload photo or video</button>
+                <button class="primary-btn quick-tab" data-target="sections">Edit hero & homepage copy</button>
+                <button class="primary-btn quick-tab" data-target="messages">Open contact inbox</button>
+              </div>
+            </div>
+            <div class="glass-panel panel-card">
+              <h2>System status</h2>
+              <p class="muted-copy">Uploaded media, text changes, messages, and social links are saved persistently in the database and uploads directory. The website reads the latest content instantly.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" data-panel="sections">
+          <div class="panel-card glass-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Hero Section</p>
+                <h2>Homepage content</h2>
+              </div>
+            </div>
+            <form class="entity-form" id="heroForm">
+              <input type="hidden" name="key" value="hero" />
+              <div class="grid-2">
+                <label><span>Eyebrow</span><input type="text" name="eyebrow" /></label>
+                <label><span>Title</span><input type="text" name="title" required /></label>
+              </div>
+              <label><span>Subtitle</span><textarea name="subtitle" rows="3"></textarea></label>
+              <label><span>Body Note</span><textarea name="body" rows="3"></textarea></label>
+              <div class="grid-2">
+                <label><span>Primary Button Label</span><input type="text" name="button_primary_label" /></label>
+                <label><span>Primary Button Link</span><input type="text" name="button_primary_link" /></label>
+              </div>
+              <div class="grid-2">
+                <label><span>Secondary Button Label</span><input type="text" name="button_secondary_label" /></label>
+                <label><span>Secondary Button Link</span><input type="text" name="button_secondary_link" /></label>
+              </div>
+              <button class="primary-btn" type="submit">Save hero section</button>
+            </form>
+          </div>
+
+          <div class="panel-card glass-panel">
+            <p class="eyebrow">About Section</p>
+            <form class="entity-form" id="aboutForm">
+              <input type="hidden" name="key" value="about" />
+              <label><span>Title</span><input type="text" name="title" required /></label>
+              <label><span>Subtitle</span><textarea name="subtitle" rows="3"></textarea></label>
+              <label><span>Body</span><textarea name="body" rows="4"></textarea></label>
+              <label><span>About Stats (one per line)</span><textarea name="stats" rows="4" placeholder="Studio work&#10;Advertising campaigns"></textarea></label>
+              <button class="primary-btn" type="submit">Save about section</button>
+            </form>
+          </div>
+
+          <div class="panel-card glass-panel">
+            <p class="eyebrow">Contact Section</p>
+            <form class="entity-form" id="contactSectionForm">
+              <input type="hidden" name="key" value="contact" />
+              <label><span>Title</span><input type="text" name="title" required /></label>
+              <label><span>Subtitle</span><textarea name="subtitle" rows="3"></textarea></label>
+              <label><span>Body</span><textarea name="body" rows="4"></textarea></label>
+              <label><span>Contact Email</span><input type="text" name="email" /></label>
+              <button class="primary-btn" type="submit">Save contact section</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" data-panel="media">
+          <div class="panel-card glass-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Media Library</p>
+                <h2>Upload and manage portfolio media</h2>
+              </div>
+            </div>
+            <form id="mediaForm" class="entity-form" enctype="multipart/form-data">
+              <input type="hidden" name="id" />
+              <div class="grid-2">
+                <label><span>Title</span><input type="text" name="title" required /></label>
+                <label>
+                  <span>Media Type</span>
+                  <select name="media_type">
+                    <option value="image">Image</option>
+                    <option value="video">Video</option>
+                  </select>
+                </label>
+              </div>
+              <div class="grid-2">
+                <label>
+                  <span>Category</span>
+                  <select name="category_id" id="mediaCategorySelect"></select>
+                </label>
+                <label><span>Featured in hero slider</span>
+                  <select name="featured">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                </label>
+              </div>
+              <label><span>Description</span><textarea name="description" rows="3"></textarea></label>
+              <label><span>Upload file</span><input type="file" name="media" accept="image/*,video/*" /></label>
+              <label><span>External video/image URL (optional)</span><input type="url" name="external_url" placeholder="https://..." /></label>
+              <div class="form-row">
+                <button class="primary-btn" type="submit">Save media item</button>
+                <button class="ghost-btn" type="button" id="mediaFormReset">Clear form</button>
+              </div>
+            </form>
+          </div>
+          <div class="panel-card glass-panel">
+            <h2>Existing media</h2>
+            <div id="mediaGrid" class="admin-media-grid"></div>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" data-panel="categories">
+          <div class="panel-card glass-panel">
+            <h2>Portfolio categories</h2>
+            <form id="categoryForm" class="inline-form">
+              <input type="hidden" name="id" />
+              <input type="text" name="name" placeholder="New category name" required />
+              <button class="primary-btn" type="submit">Save category</button>
+              <button class="ghost-btn" type="button" id="categoryFormReset">Clear</button>
+            </form>
+            <div id="categoryList" class="list-block"></div>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" data-panel="skills">
+          <div class="panel-card glass-panel">
+            <h2>Skills</h2>
+            <form id="skillForm" class="inline-form two-inline">
+              <input type="hidden" name="id" />
+              <input type="text" name="name" placeholder="Skill name" required />
+              <input type="number" name="level" min="1" max="100" placeholder="Level 1-100" required />
+              <button class="primary-btn" type="submit">Save skill</button>
+              <button class="ghost-btn" type="button" id="skillFormReset">Clear</button>
+            </form>
+            <div id="skillList" class="list-block"></div>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" data-panel="services">
+          <div class="panel-card glass-panel">
+            <h2>Services</h2>
+            <form id="serviceForm" class="entity-form">
+              <input type="hidden" name="id" />
+              <label><span>Title</span><input type="text" name="title" required /></label>
+              <label><span>Description</span><textarea name="description" rows="4" required></textarea></label>
+              <div class="form-row">
+                <button class="primary-btn" type="submit">Save service</button>
+                <button class="ghost-btn" type="button" id="serviceFormReset">Clear</button>
+              </div>
+            </form>
+            <div id="serviceList" class="list-block"></div>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" data-panel="testimonials">
+          <div class="panel-card glass-panel">
+            <h2>Testimonials</h2>
+            <form id="testimonialForm" class="entity-form">
+              <input type="hidden" name="id" />
+              <div class="grid-2">
+                <label><span>Client Name</span><input type="text" name="client_name" required /></label>
+                <label><span>Role</span><input type="text" name="role" /></label>
+              </div>
+              <label><span>Quote</span><textarea name="quote" rows="4" required></textarea></label>
+              <div class="form-row">
+                <button class="primary-btn" type="submit">Save testimonial</button>
+                <button class="ghost-btn" type="button" id="testimonialFormReset">Clear</button>
+              </div>
+            </form>
+            <div id="testimonialList" class="list-block"></div>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" data-panel="socials">
+          <div class="panel-card glass-panel">
+            <h2>Social links</h2>
+            <form id="socialForm" class="entity-form">
+              <input type="hidden" name="id" />
+              <div class="grid-2">
+                <label><span>Platform</span><input type="text" name="platform" required /></label>
+                <label><span>Label</span><input type="text" name="label" /></label>
+              </div>
+              <label><span>URL</span><input type="url" name="url" required /></label>
+              <div class="form-row">
+                <button class="primary-btn" type="submit">Save social link</button>
+                <button class="ghost-btn" type="button" id="socialFormReset">Clear</button>
+              </div>
+            </form>
+            <div id="socialList" class="list-block"></div>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" data-panel="messages">
+          <div class="panel-card glass-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Inbox</p>
+                <h2>Contact form messages</h2>
+              </div>
+            </div>
+            <div id="messageList" class="list-block"></div>
+          </div>
+        </section>
+
+        <section class="dashboard-panel" data-panel="account">
+          <div class="panel-card glass-panel">
+            <h2>Admin account</h2>
+            <form id="accountForm" class="entity-form">
+              <label><span>Email</span><input type="email" name="email" required /></label>
+              <label><span>Current Password</span><input type="password" name="currentPassword" required /></label>
+              <label><span>New Password</span><input type="password" name="newPassword" placeholder="Leave empty to keep current password" /></label>
+              <button class="primary-btn" type="submit">Update account</button>
+              <p class="status-text" id="accountStatus"></p>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="/assets/js/admin.js" defer></script>
+  </body>
+</html>
